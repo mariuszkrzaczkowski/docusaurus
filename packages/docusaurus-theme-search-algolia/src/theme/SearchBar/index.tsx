@@ -18,15 +18,13 @@ import {useDocSearchKeyboardEvents} from '@docsearch/react/useDocSearchKeyboardE
 import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import {useHistory} from '@docusaurus/router';
-import {
-  isRegexpStringMatch,
-  useSearchLinkCreator,
-} from '@docusaurus/theme-common';
+import {isRegexpStringMatch} from '@docusaurus/theme-common';
 import {
   useAlgoliaContextualFacetFilters,
   useSearchResultUrlProcessor,
   useAlgoliaAskAi,
   mergeFacetFilters,
+  useSearchLinkCreator,
 } from '@docusaurus/theme-search-algolia/client';
 import Translate from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -61,7 +59,7 @@ type DocSearchProps = Omit<
 
 // extend DocSearchProps for v4 features
 // TODO Docusaurus v4: cleanup after we drop support for DocSearch v3
-interface DocSearchV4Props extends DocSearchProps {
+interface DocSearchV4Props extends Omit<DocSearchProps, 'askAi'> {
   indexName: string;
   askAi?: ThemeConfigAlgolia['askAi'];
   translations?: DocSearchTranslations;
@@ -140,8 +138,8 @@ function useResultsFooterComponent({
 }): DocSearchProps['resultsFooterComponent'] {
   return useMemo(
     () =>
-      ({state}) =>
-        <ResultsFooter state={state} onClose={closeModal} />,
+      // eslint-disable-next-line react/display-name
+      ({state}) => <ResultsFooter state={state} onClose={closeModal} />,
     [closeModal],
   );
 }
@@ -199,7 +197,7 @@ function useSearchParameters({
 
 function DocSearch({externalUrlRegex, ...props}: DocSearchV4Props) {
   const navigator = useNavigator({externalUrlRegex});
-  const searchParameters = useSearchParameters({...props});
+  const searchParameters = useSearchParameters({...props} as DocSearchProps);
   const transformItems = useTransformItems(props);
   const transformSearchClient = useTransformSearchClient();
 
@@ -287,6 +285,8 @@ function DocSearch({externalUrlRegex, ...props}: DocSearchV4Props) {
 
       {isOpen &&
         DocSearchModal &&
+        // TODO fix this
+        // eslint-disable-next-line react-hooks/refs
         searchContainer.current &&
         createPortal(
           <DocSearchModal
@@ -301,20 +301,29 @@ function DocSearch({externalUrlRegex, ...props}: DocSearchV4Props) {
               resultsFooterComponent,
             })}
             placeholder={currentPlaceholder}
-            {...props}
+            {...(props as any)}
             translations={props.translations?.modal ?? translations.modal}
             searchParameters={searchParameters}
             {...extraAskAiProps}
           />,
+
+          // TODO fix this
+          // eslint-disable-next-line react-hooks/refs
           searchContainer.current,
         )}
     </>
   );
 }
 
-export default function SearchBar(): ReactNode {
+export default function SearchBar(props: Partial<DocSearchV4Props>): ReactNode {
   const {siteConfig} = useDocusaurusContext();
-  return (
-    <DocSearch {...(siteConfig.themeConfig.algolia as DocSearchV4Props)} />
-  );
+
+  const docSearchProps: DocSearchV4Props = {
+    ...(siteConfig.themeConfig.algolia as DocSearchV4Props),
+    // Let props override theme config
+    // See https://github.com/facebook/docusaurus/pull/11581
+    ...props,
+  };
+
+  return <DocSearch {...docSearchProps} />;
 }

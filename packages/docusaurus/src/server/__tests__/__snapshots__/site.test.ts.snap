@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`loadSite custom-i18n-site loads site 1`] = `
+exports[`loadSite > custom-i18n-site > loads site 1`] = `
 {
   "baseUrl": "/",
   "codeTranslations": {},
@@ -88,7 +88,14 @@ exports[`loadSite custom-i18n-site loads site 1`] = `
     "clientModules": [],
     "customFields": {},
     "future": {
-      "experimental_faster": {
+      "experimental_router": "browser",
+      "experimental_vcs": {
+        "getFileCreationInfo": [Function],
+        "getFileLastUpdateInfo": [Function],
+        "initialize": [Function],
+      },
+      "faster": {
+        "gitEagerVcs": false,
         "lightningCssMinimizer": false,
         "mdxCrossCompilerCache": false,
         "rspackBundler": false,
@@ -98,13 +105,10 @@ exports[`loadSite custom-i18n-site loads site 1`] = `
         "swcJsLoader": false,
         "swcJsMinimizer": false,
       },
-      "experimental_router": "browser",
-      "experimental_storage": {
-        "namespace": false,
-        "type": "localStorage",
-      },
       "v4": {
-        "removeLegacyPostBuildHeadAttribute": false,
+        "fasterByDefault": false,
+        "mdx1CompatDisabledByDefault": false,
+        "siteStorageNamespacing": false,
         "useCssCascadeLayers": false,
       },
     },
@@ -134,6 +138,7 @@ exports[`loadSite custom-i18n-site loads site 1`] = `
       "hooks": {
         "onBrokenMarkdownImages": "throw",
         "onBrokenMarkdownLinks": "warn",
+        "onUnusedMarkdownDirectives": "warn",
       },
       "mdx1Compat": {
         "admonitions": true,
@@ -155,6 +160,10 @@ exports[`loadSite custom-i18n-site loads site 1`] = `
     "staticDirectories": [
       "static",
     ],
+    "storage": {
+      "namespace": false,
+      "type": "localStorage",
+    },
     "stylesheets": [],
     "tagline": "",
     "themeConfig": {},
@@ -178,7 +187,7 @@ exports[`loadSite custom-i18n-site loads site 1`] = `
 }
 `;
 
-exports[`loadSite simple-site-with-baseUrl loads site - custom config 1`] = `
+exports[`loadSite > simple-site-with-baseUrl > loads site - custom config 1`] = `
 {
   "baseUrl": "/myBaseUrl-2/",
   "codeTranslations": {},
@@ -255,7 +264,14 @@ exports[`loadSite simple-site-with-baseUrl loads site - custom config 1`] = `
     "clientModules": [],
     "customFields": {},
     "future": {
-      "experimental_faster": {
+      "experimental_router": "browser",
+      "experimental_vcs": {
+        "getFileCreationInfo": [Function],
+        "getFileLastUpdateInfo": [Function],
+        "initialize": [Function],
+      },
+      "faster": {
+        "gitEagerVcs": false,
         "lightningCssMinimizer": false,
         "mdxCrossCompilerCache": false,
         "rspackBundler": false,
@@ -265,13 +281,10 @@ exports[`loadSite simple-site-with-baseUrl loads site - custom config 1`] = `
         "swcJsLoader": false,
         "swcJsMinimizer": false,
       },
-      "experimental_router": "browser",
-      "experimental_storage": {
-        "namespace": false,
-        "type": "localStorage",
-      },
       "v4": {
-        "removeLegacyPostBuildHeadAttribute": false,
+        "fasterByDefault": false,
+        "mdx1CompatDisabledByDefault": false,
+        "siteStorageNamespacing": false,
         "useCssCascadeLayers": false,
       },
     },
@@ -293,6 +306,7 @@ exports[`loadSite simple-site-with-baseUrl loads site - custom config 1`] = `
       "hooks": {
         "onBrokenMarkdownImages": "throw",
         "onBrokenMarkdownLinks": "warn",
+        "onUnusedMarkdownDirectives": "warn",
       },
       "mdx1Compat": {
         "admonitions": true,
@@ -314,6 +328,10 @@ exports[`loadSite simple-site-with-baseUrl loads site - custom config 1`] = `
     "staticDirectories": [
       "static",
     ],
+    "storage": {
+      "namespace": false,
+      "type": "localStorage",
+    },
     "stylesheets": [],
     "tagline": "",
     "themeConfig": {},
@@ -337,7 +355,7 @@ exports[`loadSite simple-site-with-baseUrl loads site - custom config 1`] = `
 }
 `;
 
-exports[`loadSite simple-site-with-baseUrl loads site - custom outDir 1`] = `
+exports[`loadSite > simple-site-with-baseUrl > loads site - custom outDir 1`] = `
 {
   "baseUrl": "/myBaseUrl/",
   "codeTranslations": {},
@@ -414,7 +432,14 @@ exports[`loadSite simple-site-with-baseUrl loads site - custom outDir 1`] = `
     "clientModules": [],
     "customFields": {},
     "future": {
-      "experimental_faster": {
+      "experimental_router": "browser",
+      "experimental_vcs": {
+        "getFileCreationInfo": [Function],
+        "getFileLastUpdateInfo": [Function],
+        "initialize": [Function],
+      },
+      "faster": {
+        "gitEagerVcs": false,
         "lightningCssMinimizer": false,
         "mdxCrossCompilerCache": false,
         "rspackBundler": false,
@@ -424,13 +449,10 @@ exports[`loadSite simple-site-with-baseUrl loads site - custom outDir 1`] = `
         "swcJsLoader": false,
         "swcJsMinimizer": false,
       },
-      "experimental_router": "browser",
-      "experimental_storage": {
-        "namespace": false,
-        "type": "localStorage",
-      },
       "v4": {
-        "removeLegacyPostBuildHeadAttribute": false,
+        "fasterByDefault": false,
+        "mdx1CompatDisabledByDefault": false,
+        "siteStorageNamespacing": false,
         "useCssCascadeLayers": false,
       },
     },
@@ -452,6 +474,7 @@ exports[`loadSite simple-site-with-baseUrl loads site - custom outDir 1`] = `
       "hooks": {
         "onBrokenMarkdownImages": "throw",
         "onBrokenMarkdownLinks": "warn",
+        "onUnusedMarkdownDirectives": "warn",
       },
       "mdx1Compat": {
         "admonitions": true,
@@ -473,6 +496,10 @@ exports[`loadSite simple-site-with-baseUrl loads site - custom outDir 1`] = `
     "staticDirectories": [
       "static",
     ],
+    "storage": {
+      "namespace": false,
+      "type": "localStorage",
+    },
     "stylesheets": [],
     "tagline": "",
     "themeConfig": {},
@@ -496,7 +523,7 @@ exports[`loadSite simple-site-with-baseUrl loads site - custom outDir 1`] = `
 }
 `;
 
-exports[`loadSite simple-site-with-baseUrl loads site 1`] = `
+exports[`loadSite > simple-site-with-baseUrl > loads site 1`] = `
 {
   "baseUrl": "/myBaseUrl/",
   "codeTranslations": {},
@@ -573,7 +600,14 @@ exports[`loadSite simple-site-with-baseUrl loads site 1`] = `
     "clientModules": [],
     "customFields": {},
     "future": {
-      "experimental_faster": {
+      "experimental_router": "browser",
+      "experimental_vcs": {
+        "getFileCreationInfo": [Function],
+        "getFileLastUpdateInfo": [Function],
+        "initialize": [Function],
+      },
+      "faster": {
+        "gitEagerVcs": false,
         "lightningCssMinimizer": false,
         "mdxCrossCompilerCache": false,
         "rspackBundler": false,
@@ -583,13 +617,10 @@ exports[`loadSite simple-site-with-baseUrl loads site 1`] = `
         "swcJsLoader": false,
         "swcJsMinimizer": false,
       },
-      "experimental_router": "browser",
-      "experimental_storage": {
-        "namespace": false,
-        "type": "localStorage",
-      },
       "v4": {
-        "removeLegacyPostBuildHeadAttribute": false,
+        "fasterByDefault": false,
+        "mdx1CompatDisabledByDefault": false,
+        "siteStorageNamespacing": false,
         "useCssCascadeLayers": false,
       },
     },
@@ -611,6 +642,7 @@ exports[`loadSite simple-site-with-baseUrl loads site 1`] = `
       "hooks": {
         "onBrokenMarkdownImages": "throw",
         "onBrokenMarkdownLinks": "warn",
+        "onUnusedMarkdownDirectives": "warn",
       },
       "mdx1Compat": {
         "admonitions": true,
@@ -632,6 +664,10 @@ exports[`loadSite simple-site-with-baseUrl loads site 1`] = `
     "staticDirectories": [
       "static",
     ],
+    "storage": {
+      "namespace": false,
+      "type": "localStorage",
+    },
     "stylesheets": [],
     "tagline": "",
     "themeConfig": {},
@@ -655,7 +691,7 @@ exports[`loadSite simple-site-with-baseUrl loads site 1`] = `
 }
 `;
 
-exports[`loadSite simple-site-with-baseUrl-i18n loads site -  locale fr + custom outDir 1`] = `
+exports[`loadSite > simple-site-with-baseUrl-i18n > loads site -  locale fr + custom outDir 1`] = `
 {
   "baseUrl": "/myBaseUrl/fr/",
   "codeTranslations": {},
@@ -776,7 +812,14 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site -  locale fr + custom
     "clientModules": [],
     "customFields": {},
     "future": {
-      "experimental_faster": {
+      "experimental_router": "browser",
+      "experimental_vcs": {
+        "getFileCreationInfo": [Function],
+        "getFileLastUpdateInfo": [Function],
+        "initialize": [Function],
+      },
+      "faster": {
+        "gitEagerVcs": false,
         "lightningCssMinimizer": false,
         "mdxCrossCompilerCache": false,
         "rspackBundler": false,
@@ -786,13 +829,10 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site -  locale fr + custom
         "swcJsLoader": false,
         "swcJsMinimizer": false,
       },
-      "experimental_router": "browser",
-      "experimental_storage": {
-        "namespace": false,
-        "type": "localStorage",
-      },
       "v4": {
-        "removeLegacyPostBuildHeadAttribute": false,
+        "fasterByDefault": false,
+        "mdx1CompatDisabledByDefault": false,
+        "siteStorageNamespacing": false,
         "useCssCascadeLayers": false,
       },
     },
@@ -836,6 +876,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site -  locale fr + custom
       "hooks": {
         "onBrokenMarkdownImages": "throw",
         "onBrokenMarkdownLinks": "warn",
+        "onUnusedMarkdownDirectives": "warn",
       },
       "mdx1Compat": {
         "admonitions": true,
@@ -857,6 +898,10 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site -  locale fr + custom
     "staticDirectories": [
       "static",
     ],
+    "storage": {
+      "namespace": false,
+      "type": "localStorage",
+    },
     "stylesheets": [],
     "tagline": "",
     "themeConfig": {},
@@ -880,7 +925,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site -  locale fr + custom
 }
 `;
 
-exports[`loadSite simple-site-with-baseUrl-i18n loads site - custom outDir 1`] = `
+exports[`loadSite > simple-site-with-baseUrl-i18n > loads site - custom outDir 1`] = `
 {
   "baseUrl": "/myBaseUrl/",
   "codeTranslations": {},
@@ -1001,7 +1046,14 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - custom outDir 1`] =
     "clientModules": [],
     "customFields": {},
     "future": {
-      "experimental_faster": {
+      "experimental_router": "browser",
+      "experimental_vcs": {
+        "getFileCreationInfo": [Function],
+        "getFileLastUpdateInfo": [Function],
+        "initialize": [Function],
+      },
+      "faster": {
+        "gitEagerVcs": false,
         "lightningCssMinimizer": false,
         "mdxCrossCompilerCache": false,
         "rspackBundler": false,
@@ -1011,13 +1063,10 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - custom outDir 1`] =
         "swcJsLoader": false,
         "swcJsMinimizer": false,
       },
-      "experimental_router": "browser",
-      "experimental_storage": {
-        "namespace": false,
-        "type": "localStorage",
-      },
       "v4": {
-        "removeLegacyPostBuildHeadAttribute": false,
+        "fasterByDefault": false,
+        "mdx1CompatDisabledByDefault": false,
+        "siteStorageNamespacing": false,
         "useCssCascadeLayers": false,
       },
     },
@@ -1061,6 +1110,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - custom outDir 1`] =
       "hooks": {
         "onBrokenMarkdownImages": "throw",
         "onBrokenMarkdownLinks": "warn",
+        "onUnusedMarkdownDirectives": "warn",
       },
       "mdx1Compat": {
         "admonitions": true,
@@ -1082,6 +1132,10 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - custom outDir 1`] =
     "staticDirectories": [
       "static",
     ],
+    "storage": {
+      "namespace": false,
+      "type": "localStorage",
+    },
     "stylesheets": [],
     "tagline": "",
     "themeConfig": {},
@@ -1105,7 +1159,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - custom outDir 1`] =
 }
 `;
 
-exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale de 1`] = `
+exports[`loadSite > simple-site-with-baseUrl-i18n > loads site - locale de 1`] = `
 {
   "baseUrl": "/WHATEVER/de/",
   "codeTranslations": {},
@@ -1226,7 +1280,14 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale de 1`] = `
     "clientModules": [],
     "customFields": {},
     "future": {
-      "experimental_faster": {
+      "experimental_router": "browser",
+      "experimental_vcs": {
+        "getFileCreationInfo": [Function],
+        "getFileLastUpdateInfo": [Function],
+        "initialize": [Function],
+      },
+      "faster": {
+        "gitEagerVcs": false,
         "lightningCssMinimizer": false,
         "mdxCrossCompilerCache": false,
         "rspackBundler": false,
@@ -1236,13 +1297,10 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale de 1`] = `
         "swcJsLoader": false,
         "swcJsMinimizer": false,
       },
-      "experimental_router": "browser",
-      "experimental_storage": {
-        "namespace": false,
-        "type": "localStorage",
-      },
       "v4": {
-        "removeLegacyPostBuildHeadAttribute": false,
+        "fasterByDefault": false,
+        "mdx1CompatDisabledByDefault": false,
+        "siteStorageNamespacing": false,
         "useCssCascadeLayers": false,
       },
     },
@@ -1286,6 +1344,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale de 1`] = `
       "hooks": {
         "onBrokenMarkdownImages": "throw",
         "onBrokenMarkdownLinks": "warn",
+        "onUnusedMarkdownDirectives": "warn",
       },
       "mdx1Compat": {
         "admonitions": true,
@@ -1307,6 +1366,10 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale de 1`] = `
     "staticDirectories": [
       "static",
     ],
+    "storage": {
+      "namespace": false,
+      "type": "localStorage",
+    },
     "stylesheets": [],
     "tagline": "",
     "themeConfig": {},
@@ -1330,7 +1393,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale de 1`] = `
 }
 `;
 
-exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale en 1`] = `
+exports[`loadSite > simple-site-with-baseUrl-i18n > loads site - locale en 1`] = `
 {
   "baseUrl": "/myBaseUrl/",
   "codeTranslations": {},
@@ -1451,7 +1514,14 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale en 1`] = `
     "clientModules": [],
     "customFields": {},
     "future": {
-      "experimental_faster": {
+      "experimental_router": "browser",
+      "experimental_vcs": {
+        "getFileCreationInfo": [Function],
+        "getFileLastUpdateInfo": [Function],
+        "initialize": [Function],
+      },
+      "faster": {
+        "gitEagerVcs": false,
         "lightningCssMinimizer": false,
         "mdxCrossCompilerCache": false,
         "rspackBundler": false,
@@ -1461,13 +1531,10 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale en 1`] = `
         "swcJsLoader": false,
         "swcJsMinimizer": false,
       },
-      "experimental_router": "browser",
-      "experimental_storage": {
-        "namespace": false,
-        "type": "localStorage",
-      },
       "v4": {
-        "removeLegacyPostBuildHeadAttribute": false,
+        "fasterByDefault": false,
+        "mdx1CompatDisabledByDefault": false,
+        "siteStorageNamespacing": false,
         "useCssCascadeLayers": false,
       },
     },
@@ -1511,6 +1578,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale en 1`] = `
       "hooks": {
         "onBrokenMarkdownImages": "throw",
         "onBrokenMarkdownLinks": "warn",
+        "onUnusedMarkdownDirectives": "warn",
       },
       "mdx1Compat": {
         "admonitions": true,
@@ -1532,6 +1600,10 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale en 1`] = `
     "staticDirectories": [
       "static",
     ],
+    "storage": {
+      "namespace": false,
+      "type": "localStorage",
+    },
     "stylesheets": [],
     "tagline": "",
     "themeConfig": {},
@@ -1555,7 +1627,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale en 1`] = `
 }
 `;
 
-exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale es 1`] = `
+exports[`loadSite > simple-site-with-baseUrl-i18n > loads site - locale es 1`] = `
 {
   "baseUrl": "/es/",
   "codeTranslations": {},
@@ -1676,7 +1748,14 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale es 1`] = `
     "clientModules": [],
     "customFields": {},
     "future": {
-      "experimental_faster": {
+      "experimental_router": "browser",
+      "experimental_vcs": {
+        "getFileCreationInfo": [Function],
+        "getFileLastUpdateInfo": [Function],
+        "initialize": [Function],
+      },
+      "faster": {
+        "gitEagerVcs": false,
         "lightningCssMinimizer": false,
         "mdxCrossCompilerCache": false,
         "rspackBundler": false,
@@ -1686,13 +1765,10 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale es 1`] = `
         "swcJsLoader": false,
         "swcJsMinimizer": false,
       },
-      "experimental_router": "browser",
-      "experimental_storage": {
-        "namespace": false,
-        "type": "localStorage",
-      },
       "v4": {
-        "removeLegacyPostBuildHeadAttribute": false,
+        "fasterByDefault": false,
+        "mdx1CompatDisabledByDefault": false,
+        "siteStorageNamespacing": false,
         "useCssCascadeLayers": false,
       },
     },
@@ -1736,6 +1812,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale es 1`] = `
       "hooks": {
         "onBrokenMarkdownImages": "throw",
         "onBrokenMarkdownLinks": "warn",
+        "onUnusedMarkdownDirectives": "warn",
       },
       "mdx1Compat": {
         "admonitions": true,
@@ -1757,13 +1834,17 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale es 1`] = `
     "staticDirectories": [
       "static",
     ],
+    "storage": {
+      "namespace": false,
+      "type": "localStorage",
+    },
     "stylesheets": [],
     "tagline": "",
     "themeConfig": {},
     "themes": [],
     "title": "Hello",
     "titleDelimiter": "|",
-    "url": "https://docusaurus.io",
+    "url": "https://es.docusaurus.io",
   },
   "siteConfigPath": "<PROJECT_ROOT>/packages/docusaurus/src/server/__tests__/__fixtures__/loadSiteFixtures/simple-site-with-baseUrl-i18n/docusaurus.config.js",
   "siteDir": "<PROJECT_ROOT>/packages/docusaurus/src/server/__tests__/__fixtures__/loadSiteFixtures/simple-site-with-baseUrl-i18n",
@@ -1780,7 +1861,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale es 1`] = `
 }
 `;
 
-exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale fr 1`] = `
+exports[`loadSite > simple-site-with-baseUrl-i18n > loads site - locale fr 1`] = `
 {
   "baseUrl": "/myBaseUrl/fr/",
   "codeTranslations": {},
@@ -1901,7 +1982,14 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale fr 1`] = `
     "clientModules": [],
     "customFields": {},
     "future": {
-      "experimental_faster": {
+      "experimental_router": "browser",
+      "experimental_vcs": {
+        "getFileCreationInfo": [Function],
+        "getFileLastUpdateInfo": [Function],
+        "initialize": [Function],
+      },
+      "faster": {
+        "gitEagerVcs": false,
         "lightningCssMinimizer": false,
         "mdxCrossCompilerCache": false,
         "rspackBundler": false,
@@ -1911,13 +1999,10 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale fr 1`] = `
         "swcJsLoader": false,
         "swcJsMinimizer": false,
       },
-      "experimental_router": "browser",
-      "experimental_storage": {
-        "namespace": false,
-        "type": "localStorage",
-      },
       "v4": {
-        "removeLegacyPostBuildHeadAttribute": false,
+        "fasterByDefault": false,
+        "mdx1CompatDisabledByDefault": false,
+        "siteStorageNamespacing": false,
         "useCssCascadeLayers": false,
       },
     },
@@ -1961,6 +2046,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale fr 1`] = `
       "hooks": {
         "onBrokenMarkdownImages": "throw",
         "onBrokenMarkdownLinks": "warn",
+        "onUnusedMarkdownDirectives": "warn",
       },
       "mdx1Compat": {
         "admonitions": true,
@@ -1982,6 +2068,10 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale fr 1`] = `
     "staticDirectories": [
       "static",
     ],
+    "storage": {
+      "namespace": false,
+      "type": "localStorage",
+    },
     "stylesheets": [],
     "tagline": "",
     "themeConfig": {},
@@ -2005,7 +2095,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale fr 1`] = `
 }
 `;
 
-exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale it 1`] = `
+exports[`loadSite > simple-site-with-baseUrl-i18n > loads site - locale it 1`] = `
 {
   "baseUrl": "/",
   "codeTranslations": {},
@@ -2126,7 +2216,14 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale it 1`] = `
     "clientModules": [],
     "customFields": {},
     "future": {
-      "experimental_faster": {
+      "experimental_router": "browser",
+      "experimental_vcs": {
+        "getFileCreationInfo": [Function],
+        "getFileLastUpdateInfo": [Function],
+        "initialize": [Function],
+      },
+      "faster": {
+        "gitEagerVcs": false,
         "lightningCssMinimizer": false,
         "mdxCrossCompilerCache": false,
         "rspackBundler": false,
@@ -2136,13 +2233,10 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale it 1`] = `
         "swcJsLoader": false,
         "swcJsMinimizer": false,
       },
-      "experimental_router": "browser",
-      "experimental_storage": {
-        "namespace": false,
-        "type": "localStorage",
-      },
       "v4": {
-        "removeLegacyPostBuildHeadAttribute": false,
+        "fasterByDefault": false,
+        "mdx1CompatDisabledByDefault": false,
+        "siteStorageNamespacing": false,
         "useCssCascadeLayers": false,
       },
     },
@@ -2186,6 +2280,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale it 1`] = `
       "hooks": {
         "onBrokenMarkdownImages": "throw",
         "onBrokenMarkdownLinks": "warn",
+        "onUnusedMarkdownDirectives": "warn",
       },
       "mdx1Compat": {
         "admonitions": true,
@@ -2207,13 +2302,17 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale it 1`] = `
     "staticDirectories": [
       "static",
     ],
+    "storage": {
+      "namespace": false,
+      "type": "localStorage",
+    },
     "stylesheets": [],
     "tagline": "",
     "themeConfig": {},
     "themes": [],
     "title": "Hello",
     "titleDelimiter": "|",
-    "url": "https://docusaurus.io",
+    "url": "https://it.docusaurus.io",
   },
   "siteConfigPath": "<PROJECT_ROOT>/packages/docusaurus/src/server/__tests__/__fixtures__/loadSiteFixtures/simple-site-with-baseUrl-i18n/docusaurus.config.js",
   "siteDir": "<PROJECT_ROOT>/packages/docusaurus/src/server/__tests__/__fixtures__/loadSiteFixtures/simple-site-with-baseUrl-i18n",
@@ -2230,7 +2329,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site - locale it 1`] = `
 }
 `;
 
-exports[`loadSite simple-site-with-baseUrl-i18n loads site 1`] = `
+exports[`loadSite > simple-site-with-baseUrl-i18n > loads site 1`] = `
 {
   "baseUrl": "/myBaseUrl/",
   "codeTranslations": {},
@@ -2351,7 +2450,14 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site 1`] = `
     "clientModules": [],
     "customFields": {},
     "future": {
-      "experimental_faster": {
+      "experimental_router": "browser",
+      "experimental_vcs": {
+        "getFileCreationInfo": [Function],
+        "getFileLastUpdateInfo": [Function],
+        "initialize": [Function],
+      },
+      "faster": {
+        "gitEagerVcs": false,
         "lightningCssMinimizer": false,
         "mdxCrossCompilerCache": false,
         "rspackBundler": false,
@@ -2361,13 +2467,10 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site 1`] = `
         "swcJsLoader": false,
         "swcJsMinimizer": false,
       },
-      "experimental_router": "browser",
-      "experimental_storage": {
-        "namespace": false,
-        "type": "localStorage",
-      },
       "v4": {
-        "removeLegacyPostBuildHeadAttribute": false,
+        "fasterByDefault": false,
+        "mdx1CompatDisabledByDefault": false,
+        "siteStorageNamespacing": false,
         "useCssCascadeLayers": false,
       },
     },
@@ -2411,6 +2514,7 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site 1`] = `
       "hooks": {
         "onBrokenMarkdownImages": "throw",
         "onBrokenMarkdownLinks": "warn",
+        "onUnusedMarkdownDirectives": "warn",
       },
       "mdx1Compat": {
         "admonitions": true,
@@ -2432,6 +2536,10 @@ exports[`loadSite simple-site-with-baseUrl-i18n loads site 1`] = `
     "staticDirectories": [
       "static",
     ],
+    "storage": {
+      "namespace": false,
+      "type": "localStorage",
+    },
     "stylesheets": [],
     "tagline": "",
     "themeConfig": {},

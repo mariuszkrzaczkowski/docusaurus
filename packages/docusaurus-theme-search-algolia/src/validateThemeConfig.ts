@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {escapeRegexp} from '@docusaurus/utils';
 import {Joi} from '@docusaurus/utils-validation';
 import {docSearchV3} from './docSearchVersion';
 import type {ThemeConfigValidationContext} from '@docusaurus/types';
@@ -50,7 +49,7 @@ export const Schema = Joi.object<ThemeConfig>({
     replaceSearchResultPathname: Joi.object({
       from: Joi.custom((from) => {
         if (typeof from === 'string') {
-          return escapeRegexp(from);
+          return RegExp.escape(from);
         } else if (from instanceof RegExp) {
           return from.source;
         }
@@ -67,13 +66,15 @@ export const Schema = Joi.object<ThemeConfig>({
         Joi.string(),
         // Full configuration object
         Joi.object({
-          indexName: Joi.string().required(),
-          apiKey: Joi.string().required(),
-          appId: Joi.string().required(),
           assistantId: Joi.string().required(),
+          // Optional Ask AI configuration
+          indexName: Joi.string().optional(),
+          apiKey: Joi.string().optional(),
+          appId: Joi.string().optional(),
           searchParameters: Joi.object({
             facetFilters: FacetFiltersSchema.optional(),
           }).optional(),
+          suggestedQuestions: Joi.boolean().optional(),
         }),
       )
       .custom(
@@ -102,6 +103,10 @@ export const Schema = Joi.object<ThemeConfig>({
             } satisfies ThemeConfigAlgolia['askAi'];
           }
 
+          // Fill in missing fields with the top-level Algolia config
+          askAiInput.indexName = askAiInput.indexName ?? algolia.indexName;
+          askAiInput.apiKey = askAiInput.apiKey ?? algolia.apiKey;
+          askAiInput.appId = askAiInput.appId ?? algolia.appId;
           if (
             askAiInput.searchParameters?.facetFilters === undefined &&
             algoliaFacetFilters
@@ -109,6 +114,7 @@ export const Schema = Joi.object<ThemeConfig>({
             askAiInput.searchParameters = askAiInput.searchParameters ?? {};
             askAiInput.searchParameters.facetFilters = algoliaFacetFilters;
           }
+
           return askAiInput;
         },
       )

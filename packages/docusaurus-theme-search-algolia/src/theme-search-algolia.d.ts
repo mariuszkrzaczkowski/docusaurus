@@ -11,12 +11,13 @@ declare module '@docsearch/react/useDocSearchKeyboardEvents';
 declare module '@docsearch/react/version';
 
 declare module '@docusaurus/theme-search-algolia' {
-  import type {DeepPartial, Overwrite} from 'utility-types';
+  import type {DeepPartial, Overwrite, Optional} from 'utility-types';
 
   import type {DocSearchProps} from '@docsearch/react';
   import type {FacetFilters} from 'algoliasearch/lite';
 
   // The config after normalization (e.g. AskAI string -> object)
+  // This matches DocSearch v4.3+ AskAi configuration
   export type AskAiConfig = {
     indexName: string;
     apiKey: string;
@@ -25,6 +26,7 @@ declare module '@docusaurus/theme-search-algolia' {
     searchParameters?: {
       facetFilters?: FacetFilters;
     };
+    suggestedQuestions?: boolean;
   };
 
   // DocSearch props that Docusaurus exposes directly through props forwarding
@@ -70,7 +72,9 @@ declare module '@docusaurus/theme-search-algolia' {
         apiKey: ThemeConfigAlgolia['apiKey'];
         indexName: ThemeConfigAlgolia['indexName'];
         // askAi also accepts a shorter string form
-        askAi?: string | AskAiConfig;
+        askAi?:
+          | string
+          | Optional<AskAiConfig, 'indexName' | 'appId' | 'apiKey'>;
       }
     >;
   };

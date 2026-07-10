@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {describe, expect, it, vi} from 'vitest';
 import {DEFAULT_CONFIG, validateThemeConfig} from '../validateThemeConfig';
 import type {Joi} from '@docusaurus/utils-validation';
 import type {
@@ -13,7 +14,7 @@ import type {
 } from '@docusaurus/theme-search-algolia';
 
 // mock DocSearch to a v4 version to allow AskAI tests to pass
-jest.mock('@docsearch/react', () => ({version: '4.0.0'}));
+vi.mock('@docsearch/react', () => ({version: '4.0.0'}));
 
 type AlgoliaInput = UserThemeConfig['algolia'];
 
@@ -72,7 +73,9 @@ describe('validateThemeConfig', () => {
     const algolia = undefined;
     expect(() =>
       testValidateThemeConfig(algolia),
-    ).toThrowErrorMatchingInlineSnapshot(`""themeConfig.algolia" is required"`);
+    ).toThrowErrorMatchingInlineSnapshot(
+      `[ValidationError: "themeConfig.algolia" is required]`,
+    );
   });
 
   it('empty config', () => {
@@ -82,7 +85,7 @@ describe('validateThemeConfig', () => {
         {},
       ),
     ).toThrowErrorMatchingInlineSnapshot(
-      `""algolia.appId" is required. If you haven't migrated to the new DocSearch infra, please refer to the blog post for instructions: https://docusaurus.io/blog/2021/11/21/algolia-docsearch-migration"`,
+      `[ValidationError: "algolia.appId" is required. If you haven't migrated to the new DocSearch infra, please refer to the blog post for instructions: https://docusaurus.io/blog/2021/11/21/algolia-docsearch-migration]`,
     );
   });
 
@@ -94,7 +97,9 @@ describe('validateThemeConfig', () => {
     };
     expect(() =>
       testValidateThemeConfig(algolia),
-    ).toThrowErrorMatchingInlineSnapshot(`""algolia.indexName" is required"`);
+    ).toThrowErrorMatchingInlineSnapshot(
+      `[ValidationError: "algolia.indexName" is required]`,
+    );
   });
 
   it('missing apiKey config', () => {
@@ -105,7 +110,9 @@ describe('validateThemeConfig', () => {
     };
     expect(() =>
       testValidateThemeConfig(algolia),
-    ).toThrowErrorMatchingInlineSnapshot(`""algolia.apiKey" is required"`);
+    ).toThrowErrorMatchingInlineSnapshot(
+      `[ValidationError: "algolia.apiKey" is required]`,
+    );
   });
 
   it('missing appId config', () => {
@@ -117,7 +124,7 @@ describe('validateThemeConfig', () => {
     expect(() =>
       testValidateThemeConfig(algolia),
     ).toThrowErrorMatchingInlineSnapshot(
-      `""algolia.appId" is required. If you haven't migrated to the new DocSearch infra, please refer to the blog post for instructions: https://docusaurus.io/blog/2021/11/21/algolia-docsearch-migration"`,
+      `[ValidationError: "algolia.appId" is required. If you haven't migrated to the new DocSearch infra, please refer to the blog post for instructions: https://docusaurus.io/blog/2021/11/21/algolia-docsearch-migration]`,
     );
   });
 
@@ -167,7 +174,7 @@ describe('validateThemeConfig', () => {
           ...DEFAULT_CONFIG,
           ...algolia,
           replaceSearchResultPathname: {
-            from: '/docs/some\\x2d\\\\special\\x2d\\.\\[regexp\\]\\{chars\\*\\}',
+            from: '\\/docs\\/some\\x2d\\\\special\\x2d\\.\\[regexp\\]\\{chars\\*\\}',
             to: '/abc',
           },
         },
@@ -229,10 +236,33 @@ describe('validateThemeConfig', () => {
           ...DEFAULT_CONFIG,
           ...algolia,
           askAi: {
-            indexName: 'index',
-            apiKey: 'apiKey',
-            appId: 'BH4D9OD16A',
             assistantId: 'my-assistant-id',
+            indexName: algolia.indexName,
+            apiKey: algolia.apiKey,
+            appId: algolia.appId,
+          },
+        },
+      });
+    });
+
+    it('accepts minimal object format', () => {
+      const algolia: AlgoliaInput = {
+        appId: 'BH4D9OD16A',
+        indexName: 'index',
+        apiKey: 'apiKey',
+        askAi: {
+          assistantId: 'my-assistant-id',
+        },
+      };
+      expect(testValidateThemeConfig(algolia)).toEqual({
+        algolia: {
+          ...DEFAULT_CONFIG,
+          ...algolia,
+          askAi: {
+            assistantId: 'my-assistant-id',
+            indexName: algolia.indexName,
+            apiKey: algolia.apiKey,
+            appId: algolia.appId,
           },
         },
       });
@@ -269,25 +299,22 @@ describe('validateThemeConfig', () => {
       expect(() =>
         testValidateThemeConfig(algolia),
       ).toThrowErrorMatchingInlineSnapshot(
-        `"askAi must be either a string (assistantId) or an object with indexName, apiKey, appId, and assistantId"`,
+        `[ValidationError: askAi must be either a string (assistantId) or an object with indexName, apiKey, appId, and assistantId]`,
       );
     });
 
-    it('rejects object missing required fields', () => {
+    it('rejects empty askAi', () => {
       const algolia: AlgoliaInput = {
         appId: 'BH4D9OD16A',
         indexName: 'index',
         apiKey: 'apiKey',
         // @ts-expect-error: expected type error: missing mandatory fields
-        askAi: {
-          assistantId: 'my-assistant-id',
-          // Missing indexName, apiKey, appId
-        },
+        askAi: {},
       };
       expect(() =>
         testValidateThemeConfig(algolia),
       ).toThrowErrorMatchingInlineSnapshot(
-        `""algolia.askAi.indexName" is required"`,
+        `[ValidationError: "algolia.askAi.assistantId" is required]`,
       );
     });
 
@@ -414,6 +441,96 @@ describe('validateThemeConfig', () => {
             },
           },
         });
+      });
+    });
+
+    describe('Ask AI suggestedQuestions', () => {
+      it('accepts suggestedQuestions as true', () => {
+        const algolia = {
+          appId: 'BH4D9OD16A',
+          indexName: 'index',
+          apiKey: 'apiKey',
+          askAi: {
+            assistantId: 'my-assistant-id',
+            suggestedQuestions: true,
+          },
+        } satisfies AlgoliaInput;
+
+        expect(testValidateThemeConfig(algolia)).toEqual({
+          algolia: {
+            ...DEFAULT_CONFIG,
+            ...algolia,
+            askAi: {
+              indexName: algolia.indexName,
+              apiKey: algolia.apiKey,
+              appId: algolia.appId,
+              assistantId: 'my-assistant-id',
+              suggestedQuestions: true,
+            },
+          },
+        });
+      });
+
+      it('accepts suggestedQuestions as false', () => {
+        const algolia = {
+          appId: 'BH4D9OD16A',
+          indexName: 'index',
+          apiKey: 'apiKey',
+          askAi: {
+            assistantId: 'my-assistant-id',
+            suggestedQuestions: false,
+          },
+        } satisfies AlgoliaInput;
+
+        expect(testValidateThemeConfig(algolia)).toEqual({
+          algolia: {
+            ...DEFAULT_CONFIG,
+            ...algolia,
+            askAi: {
+              indexName: algolia.indexName,
+              apiKey: algolia.apiKey,
+              appId: algolia.appId,
+              assistantId: 'my-assistant-id',
+              suggestedQuestions: false,
+            },
+          },
+        });
+      });
+
+      it('rejects invalid suggestedQuestions type', () => {
+        const algolia: AlgoliaInput = {
+          appId: 'BH4D9OD16A',
+          indexName: 'index',
+          apiKey: 'apiKey',
+          askAi: {
+            assistantId: 'my-assistant-id',
+            // @ts-expect-error: expected type error
+            suggestedQuestions: 'invalid-string',
+          },
+        };
+        expect(() =>
+          testValidateThemeConfig(algolia),
+        ).toThrowErrorMatchingInlineSnapshot(
+          `[ValidationError: "algolia.askAi.suggestedQuestions" must be a boolean]`,
+        );
+      });
+
+      it('rejects suggestedQuestions as number', () => {
+        const algolia: AlgoliaInput = {
+          appId: 'BH4D9OD16A',
+          indexName: 'index',
+          apiKey: 'apiKey',
+          askAi: {
+            assistantId: 'my-assistant-id',
+            // @ts-expect-error: expected type error
+            suggestedQuestions: 123,
+          },
+        };
+        expect(() =>
+          testValidateThemeConfig(algolia),
+        ).toThrowErrorMatchingInlineSnapshot(
+          `[ValidationError: "algolia.askAi.suggestedQuestions" must be a boolean]`,
+        );
       });
     });
   });

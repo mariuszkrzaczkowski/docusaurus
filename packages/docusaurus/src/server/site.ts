@@ -18,7 +18,7 @@ import {loadSiteConfig} from './config';
 import {getAllClientModules} from './clientModules';
 import {loadPlugins, reloadPlugin} from './plugins/plugins';
 import {loadHtmlTags} from './htmlTags';
-import {createSiteMetadata, loadSiteVersion} from './siteMetadata';
+import {createSiteMetadata, tryLoadSitePackageJson} from './siteMetadata';
 import {loadI18n} from './i18n';
 import {
   loadSiteCodeTranslations,
@@ -94,11 +94,20 @@ export async function loadContext(
     siteVersion,
     loadSiteConfig: {siteConfig: initialSiteConfig, siteConfigPath},
   } = await combinePromises({
-    siteVersion: loadSiteVersion(siteDir),
+    siteVersion: tryLoadSitePackageJson(siteDir).then((pkg) => pkg?.version),
     loadSiteConfig: loadSiteConfig({
       siteDir,
       customConfigFilePath,
     }),
+  });
+
+  // Not sure where is the best place to put this VCS initialization call?
+  // The sooner is probably the better
+  // Note: we don't await the result on purpose!
+  // VCS initialization can be slow for large repos, and we don't want to block
+  // VCS integrations should be carefully designed to avoid blocking
+  PerfLogger.async('VCS init', () => {
+    return initialSiteConfig.future.experimental_vcs.initialize({siteDir});
   });
 
   const currentBundler = await getCurrentBundler({
@@ -140,6 +149,7 @@ export async function loadContext(
 
   const siteConfig: DocusaurusConfig = {
     ...initialSiteConfig,
+    url: localeConfig.url,
     baseUrl,
   };
 

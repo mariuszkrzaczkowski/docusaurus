@@ -130,10 +130,15 @@ export async function createBaseConfig({
       return disabledPersistentCacheValue;
     }
     if (props.currentBundler.name === 'rspack') {
-      if (props.siteConfig.future.experimental_faster.rspackPersistentCache) {
-        // Use cache: true + experiments.cache.type: "persistent"
-        // See https://rspack.dev/config/experiments#persistent-cache
-        return true;
+      if (props.siteConfig.future.faster.rspackPersistentCache) {
+        return {
+          type: 'persistent',
+          // Rspack doesn't have "cache.name" like Webpack
+          // This is not ideal but work around is to merge name/version
+          // See https://github.com/web-infra-dev/rspack/pull/8920#issuecomment-2658938695
+          version: `${getCacheName()}-${getCacheVersion()}`,
+          buildDependencies: getCacheBuildDependencies(),
+        } as unknown as Configuration['cache'];
       } else {
         return disabledPersistentCacheValue;
       }
@@ -149,52 +154,10 @@ export async function createBaseConfig({
     };
   }
 
-  function getExperiments(): Configuration['experiments'] {
-    if (props.currentBundler.name === 'rspack') {
-      // TODO find a way to type this
-      const experiments: any = {};
-
-      if (!process.env.DOCUSAURUS_NO_PERSISTENT_CACHE) {
-        experiments.cache = {
-          type: 'persistent',
-          // Rspack doesn't have "cache.name" like Webpack
-          // This is not ideal but work around is to merge name/version
-          // See https://github.com/web-infra-dev/rspack/pull/8920#issuecomment-2658938695
-          version: `${getCacheName()}-${getCacheVersion()}`,
-          buildDependencies: getCacheBuildDependencies(),
-        };
-      }
-
-      if (process.env.DISABLE_RSPACK_INCREMENTAL) {
-        // Enabled by default since Rspack 1.4
-        console.log('Rspack incremental disabled');
-        experiments.incremental = false;
-      }
-
-      // See https://rspack.rs/blog/announcing-1-5#barrel-file-optimization
-      if (process.env.DISABLE_RSPACK_LAZY_BARREL) {
-        console.log('Rspack lazyBarrel disabled');
-        experiments.lazyBarrel = false;
-      } else {
-        // TODO remove after we upgrade to Rspack 1.6+
-        //  Enabled by default for Rspack >= 1.6
-        experiments.lazyBarrel = true;
-      }
-
-      // TODO re-enable later, there's an Rspack performance issue
-      //  see https://github.com/facebook/docusaurus/pull/11178
-      experiments.parallelCodeSplitting = false;
-
-      return experiments;
-    }
-    return undefined;
-  }
-
   return {
     mode,
     name,
     cache: getCache(),
-    experiments: getExperiments(),
     output: {
       pathinfo: false,
       path: outDir,
